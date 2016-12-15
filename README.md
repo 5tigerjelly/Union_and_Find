@@ -51,5 +51,7 @@ Write code for another scan of the image, this time doing the following for each
 
 When the scan is complete, the method repaint() should be called to show the newly colored image.
 
-Here is what your image should look like, after you have completed the labeling for the given image of page 1 of Lincoln's Gettysburg Address. The colors may depend on your scanning order and how you implement the UNION operation. However, we would expect the image to look like this, assuming you are following the specifications given above. (Thanks to CSE graduate student Johnson Goh for providing this example.) 
+Here is what your image should look like, after you have completed the labeling for the given image of page 1 of Lincoln's Gettysburg Address. The colors may depend on your scanning order and how you implement the UNION operation. However, we would expect the image to look like this, assuming you are following the specifications given above.
+
+![alt text](https://courses.cs.washington.edu/courses/cse373/16au/A/UF/images/word-colors.png "Logo Title Text 1")
  
