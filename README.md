@@ -1,4 +1,4 @@
-# CSE373_Assignment_UF
+# Image Recoloring via Union & Find
 ##Overview
 
 This assignment is optional. Those who complete it successfully on time will earn 15 points of extra credit. If you do this assignment, do it as individual (not partnership) work.
@@ -12,7 +12,9 @@ In this assignment, we will be applying the UNION-FIND technique. It can be used
 We define the strict pixel graph of an image to be the pair Gs = (V, E), where V is the set of pixels, like those shown above in the diagram for the previous exercise. Then E is the set of edges, where an edge e connects v0 = (x0, y0) with v1 = (x1, y1) provided | x0 - x1 | + | y0 - y1 | = 1 and the colors of the two pixels are equal. The strict pixel graph is undirected.
 
 Consider the simple digital image below, in which each pixel's color is represented by just a single letter. Here we can imagine Y = yellow, M = magenta, G = green. 
- 
+
+![alt text](https://courses.cs.washington.edu/courses/cse373/16au/A/UF/images/Fig-A5I3.png "Logo Title Text 1")
+
 Exercise (not to be turned in). Draw the strict pixel graph on top of a copy of the image. The edges should be undirected.
 
 Thought questions (not to be turned in): How many connected components are there in this graph? (A connected component C of a graph G is a subgraph of G that is connected within itself, and not connected to any vertices of G outside of C.) The number of connected components of an image is often used as an estimate of the number of separate objects or graphical elements in the image.
