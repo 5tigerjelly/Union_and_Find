@@ -19,9 +19,9 @@ Number the connected components starting at 1. The components should be ordered 
 
 ###Finding the Connected Components of an Image.
 
-Using a two-dimensional int array of pixelID values, named parentID, write code that applies the `UNION-FIND` method to build a forest of up-trees for the current image. Each element of parentID will either be the pixelID value of the parent of the up-tree node, or -1 if the node itself is the root of an up-tree. Initially, before any of the `UNION` operations, each element of the array should be `-1`, since every pixel is in its own subset.
+Using a two-dimensional int array of pixelID values, named parentID, write code that applies the `UNION-FIND` method to build a forest of up-trees for the current image. Each element of parentID will either be the pixelID value of the parent of the up-tree node, or `-1` if the node itself is the root of an up-tree. Initially, before any of the `UNION` operations, each element of the array should be `-1`, since every pixel is in its own subset.
 
-I wrote a pair of methods getXcoord and getYcoord that will return the x and y coordinates of the pixel having a given pixelID value.
+I wrote a pair of methods **getXcoord(pixelID)** and **getYcoord(pixelID)** that will return the x and y coordinates of the pixel having a given pixelID value.
 ```java
     //returns the x coordinate of the pixelId
     private int getXcoord(int pixelID){ 
@@ -82,21 +82,47 @@ int find(int pixelID) {
 ```
 
 Instrument your `UNION` method, so that a count is maintained of the number of times `UNION` is called. That count should be set to zero before the scan begins. At the end, print out the count in the following style.
-
+```
 The number of times that the method `UNION` was called for this image is: 2764.
+```
 ###Counting the Connected Components
 
 Next, set an integer variable, count, to zero, and do another scan of the parentID array. Each time a root of an uptree is encountered, increment count. At the end of the scan print out the value of count with explanatory text as follows:
 
+```
 The number of connected components in this image is: 79.
-
+```
 Note that the number of times `UNION` was called, plus the number of connected components found should add up to the number of pixels in the image, so you can use this fact in debugging your code.
 
 ###Labeling the Connected Components
 
 Now modify your code (that does the scanning and counting above) so that each time an uptree root is encountered, not only is the count incremented, but that root is associated with the count in a hashtable named componentNumber. Thus the keys of your hashtable will be of class Integer (representing the roots' pixelID values), and the values will also be of class Integer (representing the counts -- i.e., the connected component numbers).
 
-Write code for another scan of the image, this time doing the following for each pixel: (a) `FIND`ing the root of the pixel's up-tree; (b) Looking up the count value for that root in the hashtable. (Then convert the Integer to an int.) Let's call the resulting int k. (c) Determine the kth progressive color by calling the provided method getProgressiveColor(k). (d) Replace the rgb information of biWorking with the new color.
+Write code for another scan of the image, this time doing the following for each pixel: (a) `FIND`ing the root of the pixel's up-tree; (b) Looking up the count value for that root in the hashtable. (Then convert the Integer to an int.) Let's call the resulting int k. (c) Determine the kth progressive color by calling the provided method **getProgressiveColor(k)**. (d) Replace the rgb information of biWorking with the new color.
+```java
+// Compute and return the kth progressive color as an array of 3 ints.
+int[] progressiveColor(int k) {
+    int[] bits = reverseBits(k);
+    int[] red_bits = {0,0,0,0,0,0,0,0};
+    int[] green_bits = {0,0,0,0,0,0,0,0};
+    int[] blue_bits = {0,0,0,0,0,0,0,0};
+    for(int i=0; i<NBITS/3; i++) {
+        int b0 = bits[i*3];
+        int b1 = bits[i*3+1];
+        int b2 = bits[i*3+2];
+        int[] somebits = map3bits(b0, b1, b2);
+        red_bits[i]=somebits[0];
+        green_bits[i]=somebits[1];
+        blue_bits[i]=somebits[2];
+    }
+    int red = fromBitsToNumber(red_bits);
+    int green = fromBitsToNumber(green_bits);
+    int blue = fromBitsToNumber(blue_bits);
+
+    int[] rgb = {red, green, blue};
+    return rgb;
+}
+```
 
 When the scan is complete, the method repaint() should be called to show the newly colored image.
 
