@@ -21,7 +21,25 @@ Number the connected components starting at 1. The components should be ordered 
 
 Using a two-dimensional int array of pixelID values, named parentID, write code that applies the `UNION-FIND` method to build a forest of up-trees for the current image. Each element of parentID will either be the pixelID value of the parent of the up-tree node, or -1 if the node itself is the root of an up-tree. Initially, before any of the `UNION` operations, each element of the array should be `-1`, since every pixel is in its own subset.
 
-I wrote a pair of methods getXcoord and getYcoord that will return the x and y coordinates of the pixel having a given pixelID value. Then it will be possible to follow the path from any pixel to the root of its up-tree by repeatedly getting the parent node's pixelID from the parentID array, and then from the pixelID getting the x and y coordinates of the parent, and then getting the its parent's pixelID, etc., until the root of the up-tree is reached. Implement the `FIND` method to perform that path following and return the pixelID of the root.
+I wrote a pair of methods getXcoord and getYcoord that will return the x and y coordinates of the pixel having a given pixelID value.
+```java
+    //returns the x coordinate of the pixelId
+    private int getXcoord(int pixelID){ 
+        return pixelID % w; 
+    }
+
+    //returns the y coordinate of the pixelId
+    private int getYcoord(int pixelID){ 
+        return pixelID / w; 
+    }
+```
+Then it will be possible to follow the path from any pixel to the root of its up-tree by repeatedly getting the parent node's pixelID from the parentID array, and then from the pixelID getting the x and y coordinates of the parent, and then getting the its parent's pixelID, etc., until the root of the up-tree is reached. Implement the `FIND` method to perform that path following and return the pixelID of the root.
+```java
+//returns the pixelId of the x and y coordinate
+private int getPixelId(int x, int y){
+    return (y * w + x);
+}
+```
 
 Your `UNION` method should take two pixelID values representing roots of up-trees, and it should make the one having the smaller pixelID value be the parent of the other.
 ```java
