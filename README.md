@@ -3,8 +3,9 @@
 
 In this assignment, I will be applying the `UNION-FIND` technique. It can be used for two different image-processing operations. One is determining and labeling the connected components of a spatial data structure. The other is segmenting the pixels of an image into regions ("segmentation"). This assignment involves implementing the first application, determining and labeling the connected components of an image.
 
-##Background
+![alt text](https://courses.cs.washington.edu/courses/cse373/16au/A/UF/images/YMG128.png "Logo Title Text 1")
 
+##Background
 ###Connected Components of an Image
 
 I define the strict pixel graph of an image to be the pair `Gs = (V, E)`, where V is the set of pixels, like those shown above in the diagram for the previous exercise. Then E is the set of edges, where an edge e connects `v0 = (x0, y0)` with `v1 = (x1, y1)` provided `| x0 - x1 | + | y0 - y1 | = 1` and the colors of the two pixels are equal. The strict pixel graph is undirected.
