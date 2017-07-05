@@ -1,12 +1,12 @@
 # Image Recoloring via Union & Find
-##Overview
+## Overview
 
 In this assignment, I will be applying the `UNION-FIND` technique. It can be used for two different image-processing operations. One is determining and labeling the connected components of a spatial data structure. The other is segmenting the pixels of an image into regions ("segmentation"). This assignment involves implementing the first application, determining and labeling the connected components of an image.
 
 ![alt text](https://courses.cs.washington.edu/courses/cse373/16au/A/UF/images/YMG128.png "Logo Title Text 1")
 
-##Background
-###Connected Components of an Image
+## Background
+### Connected Components of an Image
 
 I define the strict pixel graph of an image to be the pair `Gs = (V, E)`, where V is the set of pixels, like those shown above in the diagram for the previous exercise. Then E is the set of edges, where an edge e connects `v0 = (x0, y0)` with `v1 = (x1, y1)` provided `| x0 - x1 | + | y0 - y1 | = 1` and the colors of the two pixels are equal. The strict pixel graph is undirected.
 
@@ -18,7 +18,7 @@ Thought questions : How many connected components are there in this graph? (A co
 
 Number the connected components starting at 1. The components should be ordered according to the minimum pixelID value in them, where a pixelID for the pixel at `(x,y)` is `y*w + x`, where w is the width of the image in pixels (i.e., w is the number of columns in the image). The connected component containing the pixel at `(0,0)` should get number `1`. Write a `1` on each pixel in that component. Find the next component by scanning the pixels in order of increasing pixelID values until you find a pixel that is not in a component already labeled. Label each pixel in this new component `2`, etc., until you have labeled all the pixels of all the components.
 
-###Finding the Connected Components of an Image.
+### Finding the Connected Components of an Image.
 
 Using a two-dimensional int array of pixelID values, named parentID, write code that applies the `UNION-FIND` method to build a forest of up-trees for the current image. Each element of parentID will either be the pixelID value of the parent of the up-tree node, or `-1` if the node itself is the root of an up-tree. Initially, before any of the `UNION` operations, each element of the array should be `-1`, since every pixel is in its own subset.
 
@@ -86,7 +86,7 @@ Instrument your `UNION` method, so that a count is maintained of the number of t
 ```
 The number of times that the method `UNION` was called for this image is: 2764.
 ```
-###Counting the Connected Components
+### Counting the Connected Components
 
 Next, set an integer variable, count, to zero, and do another scan of the parentID array. Each time a root of an uptree is encountered, increment count. At the end of the scan print out the value of count with explanatory text as follows:
 
@@ -95,7 +95,7 @@ The number of connected components in this image is: 79.
 ```
 Note that the number of times `UNION` was called, plus the number of connected components found should add up to the number of pixels in the image, so you can use this fact in debugging your code.
 
-###Labeling the Connected Components
+### Labeling the Connected Components
 
 Now modify your code (that does the scanning and counting above) so that each time an uptree root is encountered, not only is the count incremented, but that root is associated with the count in a hashtable named componentNumber. Thus the keys of your hashtable will be of class Integer (representing the roots' pixelID values), and the values will also be of class Integer (representing the counts -- i.e., the connected component numbers).
 
